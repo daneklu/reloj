@@ -100,20 +100,29 @@
         </div>
 
     </div>
-    <script>
+   <script>
 
-let hrs = document.getElementById("hrs")
-let min = document.getElementById("min")
-let scnds = document.getElementById("scnds")
+let hrs = document.getElementById("hrs");
+let min = document.getElementById("min");
+let scnds = document.getElementById("scnds");
+let texto = document.getElementById("texto");
 
-setInterval(()=>{
+setInterval(() => {
     let currentTime = new Date();
+    let currentHour = currentTime.getHours();
 
-console.log();
-hrs.innerHTML = currentTime.getHours();
-min.innerHTML = currentTime.getMinutes();
-scnds.innerHTML = currentTime.getSeconds();
-},1000)
+    hrs.innerHTML = String(currentHour).padStart(2, '0');
+    min.innerHTML = String(currentTime.getMinutes()).padStart(2, '0');
+    scnds.innerHTML = String(currentTime.getSeconds()).padStart(2, '0');
+
+    if (currentHour >= 19 || currentHour < 5) {
+        texto.innerHTML = "BUENAS NOCHES";
+    } else if (currentHour >= 5 && currentHour < 12) {
+        texto.innerHTML = "BUENOS DÍAS";
+    } else {
+        texto.innerHTML = "BUENAS TARDES";
+    }
+}, 1000);
 
     </script>
 </body>
